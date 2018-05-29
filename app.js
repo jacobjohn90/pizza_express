@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const hbs = require('hbs')
 app.set('view engine', 'hbs')
-
+app.use(express.static(__dirname + '/public'));
 const PORT = process.env.PORT || 3000;
 
 
@@ -25,6 +25,9 @@ app.get('/order/:amount/:size', (req, res) => {
         })
 })
 
+app.use((req, res) => {
+    res.send('404, page not found? Is this a new pizza?', 404)
+})
 
 
 
